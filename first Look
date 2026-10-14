@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Mysterious Door</title>
+  <style>
+    body {
+      background: #17151f;
+      color: #f0e6ff;
+      font-family: Georgia, serif;
+      max-width: 650px;
+      margin: 60px auto;
+      padding: 20px;
+      line-height: 1.8;
+    }
+    h1 { color: #d7a9ff; }
+    button {
+      display: block;
+      width: 100%;
+      margin: 12px 0;
+      padding: 14px;
+      background: #302640;
+      color: white;
+      border: 1px solid #a77bcb;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover { background: #513c68; }
+  </style>
+</head>
+<body>
+  <h1>The Mysterious Door</h1>
+  <p id="story">You wake up in an unfamiliar university corridor at midnight. At the end of the hallway, a strange door stands slightly open. What do you do?</p>
+  <div id="choices">
+    <button onclick="choose(1)">Open the door</button>
+    <button onclick="choose(2)">Look through the keyhole</button>
+    <button onclick="choose(3)">Walk away</button>
+  </div>
+
+  <script>
+    function choose(option) {
+      const story = document.getElementById("story");
+      const choices = document.getElementById("choices");
+
+      if (option === 1) {
+        story.textContent = "The door creaks open. Inside, a telephone rings on an empty desk. Do you answer it?";
+        choices.innerHTML =
+          '<button onclick="choose(4)">Answer the phone</button>' +
+          '<button onclick="choose(5)">Leave immediately</button>';
+      } else if (option === 2) {
+        story.textContent = "You peer through the keyhole. Someone on the other side whispers your name.";
+        choices.innerHTML =
+          '<button onclick="choose(1)">Open the door</button>' +
+          '<button onclick="choose(3)">Run away</button>';
+      } else if (option === 3 || option === 5) {
+        story.textContent = "You leave the corridor behind. But the next morning, a mysterious note appears on your desk. THE END... for now.";
+        choices.innerHTML = '<button onclick="location.reload()">Play again</button>';
+      } else if (option === 4) {
+        story.textContent = '"We have been waiting for you," says a familiar voice. The line goes dead. Somewhere behind you, a door opens. THE END.';
+        choices.innerHTML = '<button onclick="location.reload()">Play again</button>';
+      }
+    }
+  </script>
+</body>
+</html>
